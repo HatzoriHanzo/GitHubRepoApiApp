@@ -1,5 +1,6 @@
 package mobi.audax.githubrepoapiapp.data.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Item(
@@ -10,5 +11,6 @@ data class Item(
     val owner: Owner,
     val score: Int,
     val url: String,
-    val html_url: String
+    @SerializedName("html_url")
+    val htmlUrl: String
 ) : Serializable

@@ -1,4 +1,4 @@
-package mobi.audax.githubrepoapiapp.presentation
+package mobi.audax.githubrepoapiapp.presentation.fragments
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import mobi.audax.githubrepoapiapp.domain.repository.RepositoriesRepository
 import mobi.audax.githubrepoapiapp.util.Resource
 import retrofit2.Response
 
-class MainActivityViewModel(
+class RepositoryFragmentViewModel(
     private val newsRepository: RepositoriesRepository
 ) : ViewModel() {
     private val repositories: MutableLiveData<Resource<GithubReponse>> = MutableLiveData()

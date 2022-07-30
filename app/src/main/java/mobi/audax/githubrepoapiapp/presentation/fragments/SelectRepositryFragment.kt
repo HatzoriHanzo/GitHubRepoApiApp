@@ -8,10 +8,9 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_select_repository.*
 import mobi.audax.githubrepoapiapp.R
 import mobi.audax.githubrepoapiapp.presentation.MainActivity
-import mobi.audax.githubrepoapiapp.presentation.MainActivityViewModel
 
 class SelectRepositryFragment : Fragment(R.layout.fragment_select_repository) {
-    lateinit var viewModel: MainActivityViewModel
+    lateinit var viewModel: RepositoryFragmentViewModel
     val args: SelectRepositryFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,7 +19,7 @@ class SelectRepositryFragment : Fragment(R.layout.fragment_select_repository) {
         val item = args.repositoryItem
         webView.apply {
             webViewClient = WebViewClient()
-            loadUrl(item.html_url)
+            loadUrl(item.htmlUrl)
         }
 
     }

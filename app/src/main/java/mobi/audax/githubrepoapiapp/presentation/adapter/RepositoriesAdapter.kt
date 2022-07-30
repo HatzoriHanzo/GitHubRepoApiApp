@@ -16,7 +16,7 @@ class RepositoriesAdapter : RecyclerView.Adapter<RepositoriesAdapter.RepositoryV
 
     private val differCallback = object : DiffUtil.ItemCallback<Item>() {
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-        return oldItem.html_url == newItem.html_url
+        return oldItem.htmlUrl == newItem.htmlUrl
         }
 
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {

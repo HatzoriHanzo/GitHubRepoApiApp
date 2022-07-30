@@ -1,7 +1,6 @@
 package mobi.audax.githubrepoapiapp.presentation.fragments
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -10,12 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_repository.*
 import mobi.audax.githubrepoapiapp.R
 import mobi.audax.githubrepoapiapp.presentation.MainActivity
-import mobi.audax.githubrepoapiapp.presentation.MainActivityViewModel
 import mobi.audax.githubrepoapiapp.presentation.adapter.RepositoriesAdapter
 import mobi.audax.githubrepoapiapp.util.Resource
 
 class RepositoryFragment : Fragment(R.layout.fragment_repository) {
-    lateinit var viewModel: MainActivityViewModel
+    lateinit var viewModel: RepositoryFragmentViewModel
     lateinit var repositoryAdapter: RepositoriesAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,36 +35,35 @@ class RepositoryFragment : Fragment(R.layout.fragment_repository) {
 
         swiperefresh.setOnRefreshListener {
             viewModel.getRepositories()
-            swiperefresh.isRefreshing = false
         }
 
         viewModel.newRepositoryList.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading ->{
-                    showProgressBar()
+                    isRefreshing()
                 }
 
                 is Resource.Success -> {
-                    hideProgressBar()
+                    doneRefreshing()
                     it.data?.let { repositoryList ->
                         repositoryAdapter.differ.submitList(repositoryList.items)
 
                     }
                 }
                 is Resource.Error -> {
-                    hideProgressBar()
+                    doneRefreshing()
                     Toast.makeText(requireContext(),"An error occured: $it",Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun hideProgressBar() {
-        progressBar.visibility = View.GONE
+    private fun doneRefreshing() {
+        swiperefresh.isRefreshing = false
     }
 
-    private fun showProgressBar() {
-        progressBar.visibility = View.VISIBLE
+    private fun isRefreshing() {
+        swiperefresh.isRefreshing = true
     }
 
     private fun initRecyclerView() {

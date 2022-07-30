@@ -1,7 +1,7 @@
 package mobi.audax.githubrepoapiapp.di
 
 import mobi.audax.githubrepoapiapp.domain.repository.RepositoriesRepository
-import mobi.audax.githubrepoapiapp.presentation.MainActivityViewModel
+import mobi.audax.githubrepoapiapp.presentation.fragments.RepositoryFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -13,7 +13,7 @@ val appModule = module {
     }
 
     viewModel {
-        MainActivityViewModel(get())
+        RepositoryFragmentViewModel(get())
     }
 
 
