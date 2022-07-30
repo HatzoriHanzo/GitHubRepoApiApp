@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GitHubRepoApiApp</string>
+    <string name="repositories">Repositories</string>
+    <string name="saved_repositories">Saved Repositories</string>
+</resources>
