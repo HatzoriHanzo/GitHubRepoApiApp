@@ -44,21 +44,21 @@ class RepositoryFragment : Fragment(R.layout.fragment_repository) {
                 }
 
                 is Resource.Success -> {
-                    doneRefreshing()
+                    isDoneRefreshing()
                     it.data?.let { repositoryList ->
                         repositoryAdapter.differ.submitList(repositoryList.items)
 
                     }
                 }
                 is Resource.Error -> {
-                    doneRefreshing()
+                    isDoneRefreshing()
                     Toast.makeText(requireContext(),"An error occured: $it",Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun doneRefreshing() {
+    private fun isDoneRefreshing() {
         swiperefresh.isRefreshing = false
     }
 
